@@ -52,7 +52,7 @@ PAGE = """<!doctype html>
 BUSINESS = f"""
       <div class="legal__box">
         <p><strong>Odd Orange</strong> is a sole proprietorship run by Harshul Joshi.</p>
-        <p>Address: 4/262, Goverdhan Vilas, Sector 14, Udaipur, Rajasthan, India</p>
+        <p>Address: Udaipur, Rajasthan 313001, India</p>
         <p>Email: {MAIL} · Website: oddorange.co</p>
       </div>"""
 
