@@ -139,3 +139,9 @@ em {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Netlify adds a "Powered by Netlify" badge frame on free-plan sites. The content policy stops it
+   drawing, but the empty frame would still sit over the bottom-right corner and catch taps. */
+#nl-badge-frame {
+  display: none !important;
+}

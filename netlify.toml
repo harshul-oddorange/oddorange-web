@@ -22,11 +22,3 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     X-Frame-Options = "DENY"
-
-# Netlify adds a badge script to every page on the free plan. Its frame is blocked by the content
-# policy above but would still sit invisibly over the bottom-right corner, so answer it with an empty script.
-[[redirects]]
-  from = "/.netlify/scripts/hud"
-  to = "/hud-off.js"
-  status = 200
-  force = true
