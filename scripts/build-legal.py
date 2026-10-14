@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-UPDATED = '12 October 2026'
+UPDATED = '14 October 2026'
 EMAIL = 'harshul@oddorange.co'
 MAIL = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
 
@@ -51,10 +51,9 @@ PAGE = """<!doctype html>
 
 BUSINESS = f"""
       <div class="legal__box">
-        <p><strong>Odd Orange</strong> is run by Harshul Joshi TODO(as a sole proprietor — confirm the legal form of the business).</p>
-        <p>Address: TODO(full business address, India)</p>
+        <p><strong>Odd Orange</strong> is a sole proprietorship run by Harshul Joshi.</p>
+        <p>Address: 4/262, Goverdhan Vilas, Sector 14, Udaipur, Rajasthan, India</p>
         <p>Email: {MAIL} · Website: oddorange.co</p>
-        <p>GSTIN: TODO(add if registered for GST, or delete this line)</p>
       </div>"""
 
 GRIEVANCE = f"""
@@ -120,7 +119,7 @@ TERMS = f"""
       <p>Neither side is responsible for delays caused by events beyond reasonable control, such as illness, power or internet outages, natural disasters or platform outages. We'll tell you quickly and agree a new date.</p>
 
       <h2 id="law">13. Governing law and disputes</h2>
-      <p>These terms are governed by the laws of India. We'll always try to resolve a problem by talking first; if we can't, the courts at TODO(city, state) have jurisdiction.</p>
+      <p>These terms are governed by the laws of India. We'll always try to resolve a problem by talking first; if we can't, the courts at Udaipur, Rajasthan have jurisdiction.</p>
 
       <h2 id="general">14. General</h2>
       <p>These terms, together with your quote, are the whole agreement for your project. If a part is found unenforceable, the rest still applies. We may update these terms; the version in force when you accepted your quote applies to that project.</p>
