@@ -1,0 +1,27 @@
+/* About. */
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: end;
+  gap: clamp(28px, 5vw, 90px);
+}
+.about__copy p {
+  font: 500 var(--fs-lead) / 1.5 var(--font-sans);
+  color: var(--ink-soft);
+}
+.about__copy p + p {
+  margin-top: 16px;
+}
+.about__mail {
+  color: var(--ink) !important;
+}
+.about__mail a {
+  text-decoration-color: var(--leaf);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+@media (max-width: 860px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+}

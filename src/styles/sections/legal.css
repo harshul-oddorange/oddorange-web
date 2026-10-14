@@ -1,0 +1,112 @@
+/* Legal pages and 404. */
+.legal-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px var(--gutter);
+  background: rgba(255, 250, 242, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1.5px solid var(--line);
+}
+.legal {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(60px, 8vw, 110px) 16px 100px;
+}
+.legal h1 {
+  font: 600 clamp(40px, 6vw, 76px) / 0.98 var(--font-sans);
+  letter-spacing: -0.045em;
+  margin-bottom: 18px;
+}
+.legal__updated {
+  margin-bottom: 40px;
+}
+.legal h2 {
+  font: 600 clamp(22px, 2.4vw, 28px) / 1.2 var(--font-sans);
+  letter-spacing: -0.02em;
+  margin: 44px 0 12px;
+}
+.legal p,
+.legal li {
+  font-size: 17px;
+  line-height: 1.65;
+}
+.legal p + p {
+  margin-top: 12px;
+}
+.legal ul {
+  padding-left: 1.2em;
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+.legal a {
+  color: var(--rind);
+}
+.legal__box {
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin-top: 14px;
+}
+.legal-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 30px var(--gutter);
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 14px;
+}
+.legal-foot a {
+  color: var(--cream);
+  text-decoration: none;
+  margin-right: 18px;
+}
+.legal-foot a:hover {
+  color: var(--leaf);
+}
+.not-found {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+  text-align: center;
+}
+.not-found h1 {
+  font: 600 clamp(64px, 14vw, 200px) / 0.85 var(--font-sans);
+  letter-spacing: -0.06em;
+}
+/* Details still to fill in before launch: highlighted so they can't be missed. */
+.todo {
+  background: var(--lemon);
+  padding: 0 4px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.legal .legal__toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+  padding: 0;
+  list-style: none;
+}
+.legal__toc a {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 14px;
+  text-decoration: none;
+}

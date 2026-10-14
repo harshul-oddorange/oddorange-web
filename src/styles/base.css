@@ -1,0 +1,141 @@
+/* Reset, page defaults and shared layout helpers. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--page);
+  color: var(--ink);
+  font: 400 var(--fs-body) / 1.55 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img,
+svg,
+canvas,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+strong {
+  font-weight: 600;
+}
+em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+::selection {
+  background: var(--orange);
+  color: var(--ink);
+}
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.text-orange {
+  color: var(--orange);
+}
+.text-leaf {
+  color: var(--leaf-dark);
+}
+.svg-defs {
+  position: absolute;
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -60px;
+  z-index: 300;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Sections */
+.section {
+  padding: var(--section-y) var(--gutter);
+}
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  align-items: end;
+  gap: 20px 40px;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+.section-head .kicker {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+.section-head__lead {
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.section-title {
+  font: 600 var(--fs-h1) / 1 var(--font-sans);
+  letter-spacing: var(--tracking-tight);
+}
+.section-title em {
+  font-size: 1.06em;
+}
+.section-title--light {
+  color: var(--cream);
+}
+
+@media (max-width: 860px) {
+  .section-head {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

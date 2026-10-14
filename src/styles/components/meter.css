@@ -1,0 +1,26 @@
+/* Three-dot meters that compare packages (Standard vs Premium). */
+.meters {
+  display: grid;
+  gap: 10px;
+}
+.meter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: var(--fs-small);
+}
+.meter__dots {
+  display: flex;
+  gap: 6px;
+}
+.meter__dots i {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+}
+.meter__dots i.on {
+  background: var(--ink);
+}

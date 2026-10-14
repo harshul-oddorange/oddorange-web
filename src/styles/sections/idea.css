@@ -1,0 +1,22 @@
+/* The idea: one big sentence that fills in as you read, on a warm cream band. */
+.idea {
+  background: var(--cream);
+}
+.idea__text {
+  max-width: 22ch;
+  font: 600 clamp(30px, 4.2vw, 64px) / 1.08 var(--font-sans);
+  letter-spacing: var(--tracking-tight);
+}
+.idea__text .word {
+  color: #cfc5b6;
+  transition: color 0.25s;
+}
+.idea__text .word.is-on {
+  color: var(--ink);
+}
+.idea__text .word .text-orange {
+  color: inherit;
+}
+.idea__text .word.is-on em {
+  color: var(--orange);
+}

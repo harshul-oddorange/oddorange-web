@@ -1,0 +1,121 @@
+/* Process: Reels and Motion side by side, each with its own rolling-ball rail. */
+.process {
+  background: var(--sand);
+}
+.process__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 32px);
+  align-items: start;
+}
+.process-col {
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: clamp(20px, 2.4vw, 32px);
+}
+.process-col__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 600 var(--fs-h2) / 1.1 var(--font-sans);
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+}
+.process-col__title::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  flex: none;
+  background: var(--accent);
+}
+.process-col__body {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 18px;
+}
+.process-rail {
+  position: relative;
+  width: 4px;
+  justify-self: center;
+  background: var(--line);
+  border-radius: 4px;
+}
+.process-rail::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--fill, 0%);
+  background: var(--ink);
+  border-radius: 4px;
+}
+.process-rail__ball {
+  position: absolute;
+  left: 50%;
+  top: var(--fill, 0%);
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2.5px solid var(--ink);
+}
+.steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.step {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.35s;
+}
+.step__num {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
+  font: 600 14px/1 var(--font-mono);
+  transition: background-color 0.35s;
+}
+.step.is-active {
+  background: var(--white);
+}
+.step.is-active .step__num {
+  background: var(--accent);
+}
+.step h4 {
+  font: 600 var(--fs-h3) / 1.15 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+.step p {
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  margin-top: 4px;
+}
+.process-col__pay {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1.5px solid var(--line);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+.process-col__pay b {
+  color: var(--ink);
+}
+@media (max-width: 1100px) {
+  .process__grid {
+    grid-template-columns: 1fr;
+  }
+}

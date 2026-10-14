@@ -1,0 +1,55 @@
+/* Contact: form on lemon, with a strip of throwable balls at the bottom. */
+.contact {
+  position: relative;
+  background: var(--lemon);
+  overflow: hidden;
+  padding: var(--section-y) var(--gutter) calc(clamp(150px, 16vw, 220px) + 40px);
+}
+.contact__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(28px, 5vw, 90px);
+  align-items: start;
+}
+.contact__title {
+  font: 600 clamp(48px, 7vw, 116px) / 0.95 var(--font-sans);
+  letter-spacing: -0.04em;
+  margin-bottom: 22px;
+}
+.contact__title em {
+  font-size: 1.06em;
+  letter-spacing: -0.01em;
+}
+.contact__copy p:not(.kicker) {
+  max-width: 34ch;
+  font: 500 var(--fs-lead) / 1.45 var(--font-sans);
+}
+.ball-pit {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: clamp(150px, 16vw, 220px);
+  touch-action: pan-y;
+}
+@media (max-width: 960px) {
+  .contact__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Book-a-call row under the intro text. */
+.contact__call {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 26px;
+}
+.contact__call span {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}

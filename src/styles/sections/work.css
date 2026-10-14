@@ -1,0 +1,104 @@
+/* Selected work: horizontal track on desktop, swipe on phones. */
+.work {
+  position: relative;
+  background: var(--ink);
+  color: var(--cream);
+}
+.work .kicker {
+  color: var(--cream);
+}
+.work .kicker::before {
+  box-shadow: 0 0 0 1.5px var(--cream);
+}
+.work__pin {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 3.6vw, 48px);
+  padding: clamp(80px, 9vw, 120px) 0;
+  overflow: hidden;
+}
+.work__head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 16px 40px;
+  padding: 0 var(--gutter);
+}
+.work__head .kicker {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+.work__note {
+  max-width: 30ch;
+  color: var(--on-dark-muted);
+}
+.work__track {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap);
+  width: max-content;
+  padding: 0 var(--gutter);
+  will-change: transform;
+}
+.work-card {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.work-card__media {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.work-card--reel .work-card__media {
+  width: clamp(200px, 16vw, 270px);
+}
+.work-card--motion .work-card__media {
+  width: clamp(300px, 38vw, 640px);
+}
+.work-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.work-card__meta b {
+  font: 600 18px/1.2 var(--font-sans);
+}
+.work-card__meta .label {
+  color: var(--on-dark-muted);
+  font-size: 11px;
+}
+.work .video-slot {
+  background: var(--ink-2);
+}
+.work .video-slot__soon p {
+  color: var(--on-dark-muted);
+}
+.work .video-slot__soon svg {
+  color: var(--cream);
+}
+@media (max-width: 960px) {
+  .work__head {
+    grid-template-columns: 1fr;
+  }
+  .work__track {
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+  }
+  .work-card {
+    scroll-snap-align: start;
+  }
+}
+.work__note a {
+  color: var(--cream);
+  text-decoration: none;
+  background: linear-gradient(var(--orange), var(--orange)) 0 100% / 100% 1.5px no-repeat;
+}
+.work__note a:hover {
+  color: var(--orange);
+}

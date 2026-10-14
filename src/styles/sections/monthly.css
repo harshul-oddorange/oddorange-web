@@ -1,0 +1,60 @@
+/* Monthly packages: green poster with a fanned stack of Reels. */
+.monthly {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+  padding: var(--section-y) var(--gutter);
+  /* subtle gradient: a lighter, lemon-tinted highlight in the top-left corner */
+  background:
+    radial-gradient(70% 90% at 0% 0%, rgba(255, 216, 74, 0.32), transparent 60%),
+    linear-gradient(160deg, #47d388 0%, var(--leaf) 55%, #35b86f 100%);
+  overflow: hidden;
+}
+.monthly__title {
+  font: 600 clamp(40px, 6vw, 96px) / 0.95 var(--font-sans);
+  letter-spacing: -0.045em;
+}
+.monthly__title em {
+  font-size: 1.06em;
+}
+.monthly__sub {
+  max-width: 46ch;
+  margin: 22px 0 28px;
+  font: 500 var(--fs-lead) / 1.45 var(--font-sans);
+}
+.monthly__stack {
+  position: relative;
+  height: clamp(260px, 30vw, 440px);
+}
+.monthly__card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(120px, 12vw, 190px);
+  aspect-ratio: 9 / 16;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  background: var(--cream);
+  font: 600 11px/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.monthly__card:nth-child(2) {
+  background: var(--lemon);
+}
+.monthly__card:nth-child(3) {
+  background: var(--orange);
+}
+@media (max-width: 860px) {
+  .monthly {
+    grid-template-columns: 1fr;
+  }
+  .monthly__stack {
+    height: 280px;
+  }
+}

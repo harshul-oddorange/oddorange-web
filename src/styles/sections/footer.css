@@ -1,0 +1,112 @@
+/* Footer. */
+.site-footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding: clamp(60px, 7vw, 100px) var(--gutter) 28px;
+  overflow: hidden;
+}
+.site-footer .label {
+  color: var(--on-dark-muted);
+  margin-bottom: 16px;
+}
+.site-footer__top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 32px;
+}
+.site-footer__mail {
+  font: 600 clamp(24px, 2.8vw, 44px) / 1.1 var(--font-sans);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  background: linear-gradient(var(--leaf), var(--leaf)) 0 100% / 0 3px no-repeat;
+  transition: background-size 0.5s var(--ease-out);
+}
+.site-footer__mail:hover {
+  background-size: 100% 3px;
+}
+.site-footer__call {
+  display: inline-block;
+  margin-top: 18px;
+  font-weight: 500;
+  color: var(--on-dark-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.site-footer__call:hover {
+  color: var(--leaf);
+}
+.socials,
+.legal-links {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.socials a,
+.socials__soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 32px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.socials svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  transition:
+    transform 0.35s var(--ease-out),
+    color 0.2s;
+}
+.socials a:hover svg {
+  transform: scale(1.15) rotate(-6deg);
+  color: var(--orange);
+}
+.socials__soon {
+  color: var(--on-dark-muted);
+}
+.socials__soon::after {
+  content: 'soon';
+  font: 600 10px/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 1px solid currentColor;
+  border-radius: 99px;
+  padding: 4px 6px;
+}
+.legal-links a {
+  text-decoration: none;
+}
+.legal-links a:hover,
+.site-footer__bottom a:hover {
+  color: var(--leaf);
+}
+.site-footer__word {
+  font: 600 clamp(56px, 15.5vw, 280px) / 0.8 var(--font-sans);
+  letter-spacing: -0.07em;
+  white-space: nowrap;
+  margin: clamp(40px, 6vw, 90px) 0 clamp(20px, 3vw, 40px);
+}
+.site-footer__word span {
+  color: var(--orange);
+}
+.site-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: var(--on-dark-muted);
+  font-size: 14px;
+}
+.site-footer__bottom a {
+  text-decoration: none;
+}
+@media (max-width: 960px) {
+  .site-footer__top {
+    grid-template-columns: 1fr 1fr;
+  }
+  .site-footer__top > :first-child {
+    grid-column: 1 / -1;
+  }
+}

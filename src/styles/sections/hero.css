@@ -1,0 +1,105 @@
+/*
+ * Hero: the dot pattern sits right under the navigation as a background behind the
+ * headline and intro text, fading out before the buttons. A soft warm glow adds depth.
+ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 3vw, 40px);
+  min-height: min(100svh, 980px);
+  padding: 108px var(--gutter) clamp(56px, 7vw, 96px);
+  overflow: hidden;
+  background:
+    radial-gradient(55% 60% at 88% 18%, rgba(255, 216, 74, 0.28), transparent 70%),
+    radial-gradient(45% 50% at 6% 92%, rgba(63, 203, 126, 0.1), transparent 70%), var(--page);
+}
+.hero > :not(.dot-field) {
+  position: relative;
+  z-index: 1;
+}
+.dot-field {
+  position: absolute;
+  z-index: 0;
+  inset: 76px 0 0 0;
+  width: 100%;
+  height: calc(100% - 76px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 80%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 80%);
+}
+.hero__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.hero__headline {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(16px, 3vw, 48px);
+  margin-top: auto;
+}
+.hero__title {
+  font: 600 var(--fs-display) / 0.88 var(--font-sans);
+  letter-spacing: -0.055em;
+}
+.hero__title .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.07em;
+  margin-bottom: -0.07em;
+}
+.hero__title .line__in {
+  display: inline-block;
+}
+.hero__title em {
+  font-size: 1.08em;
+  letter-spacing: -0.02em;
+}
+.hero__foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.hero__sub {
+  max-width: 44ch;
+  font: 500 var(--fs-lead) / 1.45 var(--font-sans);
+  color: var(--ink-soft);
+}
+.hero__sub strong {
+  color: var(--ink);
+  background: linear-gradient(transparent 60%, rgba(63, 203, 126, 0.45) 60%);
+}
+.hero__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: auto;
+    padding-top: 96px;
+  }
+  .dot-field {
+    inset: 64px 0 0 0;
+    height: calc(100% - 64px);
+  }
+  .hero__meta-right {
+    display: none;
+  }
+  .hero__headline {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 44px;
+  }
+  .odd-badge {
+    position: absolute;
+    right: 0;
+    top: -62px;
+    width: 76px;
+  }
+}

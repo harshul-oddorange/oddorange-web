@@ -1,0 +1,47 @@
+/* Testimonials: quote cards in a responsive grid. */
+.testimonials .section-title {
+  margin-bottom: clamp(28px, 3.6vw, 48px);
+}
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: var(--gap);
+}
+.quote-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  padding: clamp(22px, 2.6vw, 34px);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+.quote-card:nth-child(3n + 1) {
+  background: var(--cream);
+}
+.quote-card__text {
+  font: 500 var(--fs-lead) / 1.45 var(--font-sans);
+}
+.quote-card__who {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.quote-card__who > span {
+  display: grid;
+  gap: 2px;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+.quote-card__who b {
+  color: var(--ink);
+  font-weight: 600;
+}
+.quote-card__photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  object-fit: cover;
+}

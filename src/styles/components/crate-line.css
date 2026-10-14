@@ -1,0 +1,46 @@
+/*
+ * Separator: the A3 row logo stretched into a continuous line of dots,
+ * with one orange ball that rolls along it as you scroll.
+ * --vertical runs top to bottom (used between the two service cards).
+ */
+.crate-line {
+  position: relative;
+  height: 44px;
+  margin: 0 var(--gutter);
+  background: radial-gradient(circle, var(--ink) 4px, transparent 4.6px) 0 50% / 26px 26px repeat-x;
+}
+.crate-line__ball {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 5px var(--line-gap, var(--page));
+  will-change: transform;
+}
+.crate-line--vertical {
+  width: 44px;
+  height: auto;
+  margin: 0;
+  background: radial-gradient(circle, var(--ink) 4px, transparent 4.6px) 50% 0 / 26px 26px repeat-y;
+}
+.crate-line--vertical .crate-line__ball {
+  left: 50%;
+  top: 0;
+  margin: 0 0 0 -10px;
+}
+@media (max-width: 860px) {
+  .crate-line--vertical {
+    width: auto;
+    height: 44px;
+    background: radial-gradient(circle, var(--ink) 4px, transparent 4.6px) 0 50% / 26px 26px repeat-x;
+  }
+  .crate-line--vertical .crate-line__ball {
+    left: 0;
+    top: 50%;
+    margin: -10px 0 0;
+  }
+}

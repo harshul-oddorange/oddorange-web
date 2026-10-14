@@ -1,0 +1,209 @@
+/* YouTube slot: thumbnail + play button, swaps to the embed on click. Shows "coming soon" when empty. */
+.video-slot {
+  position: relative;
+  width: 100%;
+  background: var(--sand);
+  overflow: hidden;
+  border-radius: inherit;
+}
+.video-slot iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-slot__thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+.video-slot:hover .video-slot__thumb {
+  transform: scale(1.04);
+}
+.video-slot__play {
+  --size: clamp(48px, 6vw, 96px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--size);
+  height: var(--size);
+  margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+  border: 0;
+  border-radius: 50%;
+  background: var(--orange);
+  display: grid;
+  place-items: center;
+  transition: transform 0.4s var(--ease-out);
+}
+.video-slot:hover .video-slot__play {
+  transform: scale(1.08);
+}
+.video-slot__play svg {
+  width: 34%;
+  margin-left: 8%;
+}
+.video-slot__soon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.video-slot__soon svg {
+  width: clamp(34px, 5vw, 76px);
+  color: var(--ink);
+}
+.video-slot__soon p {
+  color: var(--muted);
+}
+.video-slot--small .video-slot__soon svg {
+  width: 30px;
+}
+.video-slot--small .video-slot__soon p {
+  font-size: 11px;
+}
+.video-slot__poster {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px;
+  background: radial-gradient(60% 60% at 50% 40%, rgba(255, 109, 31, 0.18), transparent 70%), var(--sand);
+}
+.video-slot__poster svg {
+  position: absolute;
+  top: 18%;
+  width: clamp(34px, 5vw, 76px);
+  color: var(--ink);
+}
+.video-slot__note {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  font: 600 10px/1 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.work .video-slot__poster {
+  background: radial-gradient(60% 60% at 50% 40%, rgba(255, 109, 31, 0.22), transparent 70%), var(--ink-2);
+}
+.work .video-slot__poster svg,
+.work .video-slot__poster p,
+.work .video-slot__note {
+  color: var(--on-dark-muted);
+}
+
+/* Pricing samples are small: a smaller play button and no "Plays from YouTube" note. */
+.video-slot--small .video-slot__play {
+  --size: 40px;
+}
+.video-slot--small .video-slot__note {
+  display: none;
+}
+
+/* Overlay player for the pricing samples. */
+.player {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(56px, 7vw, 96px) var(--gutter);
+  background: rgba(26, 23, 20, 0.94);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s var(--ease-out),
+    visibility 0s 0.35s;
+}
+.player.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s var(--ease-out);
+}
+.player__frame {
+  position: relative;
+  width: min(100%, calc((100svh - 2 * clamp(56px, 7vw, 96px)) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--ink-2);
+  transform: scale(0.96);
+  transition: transform 0.5s var(--ease-out);
+}
+.player[data-kind='reel'] .player__frame {
+  width: min(100%, calc((100svh - 2 * clamp(56px, 7vw, 96px)) * 9 / 16));
+  aspect-ratio: 9 / 16;
+}
+.player.is-open .player__frame {
+  transform: none;
+}
+.player__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.player__close {
+  position: absolute;
+  top: clamp(12px, 2vw, 24px);
+  right: clamp(12px, 2vw, 24px);
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--cream);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.35s var(--ease-out);
+}
+.player__close:hover {
+  transform: rotate(90deg);
+}
+.player__close svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+html.has-player {
+  overflow: hidden;
+}
+
+/* With a real thumbnail the play button sits in the corner, so the artwork stays readable. */
+.video-slot--image .video-slot__play {
+  --size: clamp(44px, 4vw, 64px);
+  --inset: clamp(12px, 1.4vw, 20px);
+  left: var(--inset);
+  top: auto;
+  bottom: var(--inset);
+  margin: 0;
+  box-shadow: 0 8px 24px rgba(26, 23, 20, 0.28);
+}
+.video-slot--image .video-slot__note {
+  display: none;
+}
+.showreel .video-slot--image .video-slot__play {
+  --size: clamp(52px, 5vw, 84px);
+  --inset: clamp(14px, 2vw, 32px);
+}
+.video-slot--small.video-slot--image .video-slot__play {
+  --size: 34px;
+  --inset: 8px;
+}

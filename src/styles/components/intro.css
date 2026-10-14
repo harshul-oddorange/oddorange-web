@@ -1,0 +1,33 @@
+/* Intro overlay with the logo sting. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: var(--page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.intro__lockup {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 26px);
+}
+.intro__mark {
+  width: clamp(64px, 9vw, 120px);
+  height: clamp(64px, 9vw, 120px);
+  overflow: visible;
+}
+.intro__word {
+  display: block;
+  font: 600 clamp(40px, 6.6vw, 96px) / 1 var(--font-sans);
+  letter-spacing: -0.045em;
+  padding-bottom: 0.08em;
+  clip-path: inset(0 100% 0 0);
+}
+.intro.is-done {
+  pointer-events: none;
+}
+html.no-intro .intro {
+  display: none;
+}

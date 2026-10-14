@@ -1,0 +1,71 @@
+/* Showreel: the frame grows to full width while "Watch / the reel" part. */
+.showreel {
+  position: relative;
+  height: 210vh;
+}
+.showreel__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.showreel__frame {
+  position: relative;
+  z-index: 2;
+  width: min(92vw, 1600px);
+  aspect-ratio: 16 / 9;
+  max-height: 84svh;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.showreel__frame .video-slot {
+  height: 100%;
+}
+.showreel__word {
+  position: absolute;
+  z-index: 3;
+  font: 600 clamp(48px, 9vw, 150px) / 0.9 var(--font-sans);
+  letter-spacing: var(--tracking-display);
+  pointer-events: none;
+}
+.showreel__word--left {
+  left: var(--gutter);
+  top: 15vh;
+}
+.showreel__word--right {
+  right: var(--gutter);
+  bottom: 13vh;
+}
+.showreel__word em {
+  font-size: 1.08em;
+}
+
+@media (max-width: 600px) {
+  .showreel {
+    height: 150vh;
+  }
+  .showreel__word--left {
+    top: 18vh;
+  }
+  .showreel__word--right {
+    bottom: 18vh;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .showreel {
+    height: auto;
+  }
+  .showreel__pin {
+    position: relative;
+    height: auto;
+    padding: 80px 0;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .showreel__word {
+    position: static;
+  }
+}

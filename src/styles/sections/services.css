@@ -1,0 +1,86 @@
+/* What we make: two category cards. */
+.services .section-title {
+  margin-bottom: clamp(28px, 3.6vw, 48px);
+}
+.services__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+}
+.service-card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--white);
+  text-decoration: none;
+  transition: transform 0.5s var(--ease-out);
+}
+.service-card:hover {
+  transform: translateY(-6px);
+}
+.service-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: clamp(22px, 2.6vw, 34px);
+  border-bottom: 2px solid var(--ink);
+}
+.service-card--orange .service-card__top {
+  background: var(--lemon);
+}
+.service-card--leaf .service-card__top {
+  background: var(--leaf);
+}
+.service-card__title {
+  font: 600 var(--fs-h2) / 1.05 var(--font-sans);
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+}
+.service-card__mark {
+  width: clamp(40px, 4vw, 56px);
+  color: var(--ink);
+  flex: none;
+}
+.service-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(22px, 2.6vw, 34px);
+  flex: 1;
+}
+.service-card__summary {
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.service-card__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1.5px solid var(--line);
+}
+.service-card__from {
+  font-weight: 600;
+  font-size: var(--fs-lead);
+}
+.service-card__cta {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--leaf);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+@media (max-width: 860px) {
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+  .services__grid .crate-line {
+    margin: 4px 0;
+  }
+}
