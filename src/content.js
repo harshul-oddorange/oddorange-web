@@ -27,15 +27,29 @@ export const SITE = {
  * Without one, a branded poster shows. Nothing loads from YouTube until a visitor presses play.
  */
 export const VIDEOS = {
-  showreel: { id: '2phRXIjkVaY', title: 'Odd Orange showreel', poster: '/img/work/showreel.webp' },
+  showreel: {
+    id: 'W4pvKKLiTCU',
+    title: 'Odd Orange motion graphics showreel',
+    poster: '/img/work/showreel.webp',
+    // Silent loop that plays in the frame until the visitor presses play (self-hosted, not YouTube).
+    preview: '/video/showreel-preview.mp4',
+  },
   // "Fresh from the crate": every video on the YouTube channel except the showreel.
+  // Posters are the channel's own YouTube thumbnails (marketing/thumbnails/final).
   work: [
     {
-      id: '_5Nb3YsmLIg',
+      id: 'AhxTuIf6da4',
       kind: 'motion',
-      title: 'Kova 2.0',
-      tag: 'SaaS launch film',
-      poster: '/img/work/kova.webp',
+      title: 'Wayfare',
+      tag: 'Explainer breakdown',
+      poster: '/img/work/wayfare.webp',
+    },
+    {
+      id: 'yv7Jr585XhI',
+      kind: 'motion',
+      title: 'The window',
+      tag: 'Brand film',
+      poster: '/img/work/window.webp',
     },
     {
       id: 'v-0ec7srjPI',
@@ -45,11 +59,18 @@ export const VIDEOS = {
       poster: '/img/work/launch-reel.webp',
     },
     {
-      id: '6dBQlNGDdZk',
+      id: 'rJuV32ZGj9o',
       kind: 'motion',
-      title: 'Odd Orange era',
-      tag: 'Motion graphics',
-      poster: '/img/work/era.webp',
+      title: 'Flowpilot',
+      tag: 'SaaS launch film',
+      poster: '/img/work/flowpilot.webp',
+    },
+    {
+      id: '_5Nb3YsmLIg',
+      kind: 'motion',
+      title: 'Kova 2.0',
+      tag: 'SaaS launch film',
+      poster: '/img/work/kova.webp',
     },
     {
       id: 'RDAsEcR5mac',
@@ -57,6 +78,20 @@ export const VIDEOS = {
       title: 'Brand identity',
       tag: 'Motion Reel',
       poster: '/img/work/identity.webp',
+    },
+    {
+      id: '6dBQlNGDdZk',
+      kind: 'motion',
+      title: 'Odd Orange era',
+      tag: 'Studio promo',
+      poster: '/img/work/era.webp',
+    },
+    {
+      id: '2phRXIjkVaY',
+      kind: 'motion',
+      title: 'Our first showreel',
+      tag: 'Showreel 2026',
+      poster: '/img/work/showreel-2026.webp',
     },
     {
       id: 'V6yMUhntFyg',
@@ -102,6 +137,8 @@ export const SERVICES = [
     summary:
       'Reels, Shorts and social videos edited from your footage: pacing, captions, music, colour and motion.',
     uses: ['New arrivals', 'Product showcases', 'Fashion campaigns', 'Promos'],
+    // Real work tucked into the "What we make" card, back to front.
+    stills: ['/img/work/identity.webp', '/img/work/launch-reel.webp', '/img/work/teeandtoe.webp'],
     note: 'Starting prices for Reels up to 60 seconds, edited from footage you supply.',
     sampleKind: 'reel',
     meterLabels: ['Editing', 'Motion graphics', 'Creative treatment'],
@@ -170,6 +207,7 @@ export const SERVICES = [
     accent: 'leaf',
     summary: 'Animated explainers, product launches and UI animation that make software easy to understand.',
     uses: ['SaaS explainers', 'Product launches', 'UI animation', 'Feature videos'],
+    stills: ['/img/work/flowpilot.webp', '/img/work/wayfare.webp'],
     note: 'Starting prices for videos up to 60 seconds.',
     sampleKind: 'motion',
     meterLabels: ['Animation detail', 'UI & product animation', 'Visual effects'],
@@ -208,7 +246,7 @@ export const SERVICES = [
           'Two revision rounds at each agreed stage',
         ],
         bestFor: 'Product launches, landing-page explainers and investor-ready demos.',
-        sample: { id: '_5Nb3YsmLIg', title: 'Kova 2.0 launch film', poster: '/img/work/kova.webp' },
+        sample: { id: 'AhxTuIf6da4', title: 'Wayfare explainer breakdown', poster: '/img/work/wayfare.webp' },
       },
     ],
     custom:

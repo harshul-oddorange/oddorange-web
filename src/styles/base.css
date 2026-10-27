@@ -121,6 +121,10 @@ em {
 .section-title em {
   font-size: 1.06em;
 }
+/* The second half of a two-part headline, set back a tone. The serif italic is kept for a few brand words only. */
+.title-dim {
+  color: #8a8279;
+}
 .section-title--light {
   color: var(--cream);
 }

@@ -18,7 +18,7 @@ import { renderWork, initWorkScroll } from './modules/work.js';
 import { renderPricing } from './modules/pricing.js';
 import { renderTestimonials } from './modules/testimonials.js';
 import { renderProcess, initProcessRails } from './modules/process.js';
-import { initScenes } from './modules/scenes.js';
+import { createHeroReveal, initScenes } from './modules/scenes.js';
 import { initBallPit } from './modules/ballPit.js';
 import { initForm } from './modules/form.js';
 import { initMagneticButtons } from './modules/magnetic.js';
@@ -41,8 +41,9 @@ initNav();
 initCursor();
 initDotField();
 
-// 3. Motion, after the intro finishes
-playIntro().then(() => {
+// 3. Motion: the hero waits under the intro and rises as it lifts; the rest starts once it has gone
+const heroReveal = createHeroReveal();
+playIntro(() => heroReveal?.play()).then(() => {
   initScenes();
   initCrateLines();
   initWorkScroll();

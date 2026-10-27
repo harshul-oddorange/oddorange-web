@@ -1,6 +1,8 @@
 /**
  * Intro: the logo sting (S3b). All-black crate, the top-right dot turns orange, pops out,
  * bounces on two top dots and curves into the middle. Plays once per visit.
+ * `onReveal` runs as the curtain starts to lift (or at once when the intro is skipped), so the
+ * page's first animation plays while it is being uncovered, not after.
  */
 import { gsap } from 'gsap';
 import { $, COLORS, prefersReducedMotion, session } from '../lib/dom.js';
@@ -28,10 +30,11 @@ function circle(svg, cx, cy, r, fill) {
   return c;
 }
 
-export function playIntro() {
+export function playIntro(onReveal = () => {}) {
   const overlay = $('.intro');
   if (prefersReducedMotion || session.get('oo-intro')) {
     document.documentElement.classList.add('no-intro');
+    onReveal();
     return Promise.resolve();
   }
   session.set('oo-intro', '1');
@@ -132,6 +135,8 @@ export function playIntro() {
       // 6. The name wipes in as one piece (no per-letter movement, so no jitter)
       .to('.intro__word', { clipPath: 'inset(0 0% 0 0)', duration: 0.7, ease: 'expo.inOut' }, land + 0.35)
       .to(overlay, { yPercent: -100, duration: 0.9, ease: 'expo.inOut' }, land + 1.25)
+      // the hero rises while the curtain is still moving off it
+      .add(onReveal, land + 1.5)
       .add(() => overlay.classList.add('is-done'), land + 1.3);
   });
 }

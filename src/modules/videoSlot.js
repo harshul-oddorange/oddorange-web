@@ -5,7 +5,7 @@
  * Playback uses youtube-nocookie.com (YouTube's privacy-enhanced mode).
  * Big slots play in place; small ones (the pricing samples) open a full-size player overlay.
  */
-import { COLORS } from '../lib/dom.js';
+import { COLORS, prefersReducedMotion, watchVisibility } from '../lib/dom.js';
 import { ICONS, crateMark } from '../lib/icons.js';
 import { pauseScroll } from './smoothScroll.js';
 
@@ -38,6 +38,8 @@ export function mountVideoSlot(el, video, kind = 'motion', { lightbox = false } 
     <button class="video-slot__play" aria-label="Play ${video.title} (loads YouTube)">${playIcon}</button>
     <p class="video-slot__note">Plays from YouTube</p>`;
 
+  const preview = video.preview && !prefersReducedMotion ? mountPreview(el, video.preview) : null;
+
   if (lightbox) {
     el.addEventListener('click', () => openPlayer(video, kind));
     return;
@@ -45,10 +47,35 @@ export function mountVideoSlot(el, video, kind = 'motion', { lightbox = false } 
   el.addEventListener(
     'click',
     () => {
+      preview?.disconnect();
       el.innerHTML = embed(video);
       delete el.dataset.cursor;
     },
     { once: true },
+  );
+}
+
+/**
+ * A silent, self-hosted loop over the poster (no YouTube request). It loads only when the slot
+ * nears the screen, plays while visible and fades in once it has frames, so the poster shows until then.
+ */
+function mountPreview(el, src) {
+  const video = document.createElement('video');
+  video.className = 'video-slot__preview';
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.preload = 'none';
+  video.setAttribute('aria-hidden', 'true');
+  video.addEventListener('playing', () => video.classList.add('is-playing'), { once: true });
+  el.querySelector('.video-slot__play').before(video);
+  return watchVisibility(
+    el,
+    () => {
+      if (!video.src) video.src = src;
+      video.play().catch(() => {});
+    },
+    () => video.pause(),
   );
 }
 

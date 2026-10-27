@@ -1,10 +1,10 @@
 /*
- * Founder portrait: the photo sits in an orange circle and the head breaks out of the top,
- * like a cut-out sticker. A tilted green label says hello.
- * --size sets the circle; the photo's clip is the circle's lower half plus open space above.
+ * Founder portrait: Harshul's own portrait (orange circle and doodles are part of the photo),
+ * shown whole on a card of its own paper colour. A tilted green label says hello.
+ * --size sets the card width; the card keeps the photo's 860 x 720 shape.
  */
 .founder {
-  --size: clamp(220px, 21vw, 300px);
+  --size: clamp(240px, 24vw, 340px);
   display: flex;
   align-items: flex-end;
   gap: clamp(16px, 2vw, 28px);
@@ -14,34 +14,27 @@
   position: relative;
   flex: none;
   width: var(--size);
-  height: var(--size);
-}
-.founder__frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 2px solid var(--ink);
-  background: var(--orange);
+  aspect-ratio: 860 / 720;
 }
 .founder__clip {
   position: absolute;
   inset: 0;
-  clip-path: inset(calc(var(--size) * -0.35) 0 0 0 round 0 0 calc(var(--size) / 2) calc(var(--size) / 2));
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fcfbf6;
+  box-shadow: 0 18px 40px -18px rgba(26, 23, 20, 0.45);
 }
 .founder__photo {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 122%;
-  max-width: none;
-  height: auto;
-  transform: translateX(-43%);
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .founder__sticker {
   position: absolute;
-  right: -64px;
-  top: 40%;
+  left: -26px;
+  top: 4%;
   padding: 9px 14px;
   border: 2px solid var(--ink);
   border-radius: 999px;
@@ -65,13 +58,13 @@
 }
 @media (max-width: 600px) {
   .founder {
-    --size: 200px;
+    --size: min(100%, 300px);
     flex-direction: column;
     align-items: flex-start;
     margin-top: 48px;
   }
   .founder__sticker {
-    right: -58px;
+    left: -10px;
   }
 }
 .founder__link {

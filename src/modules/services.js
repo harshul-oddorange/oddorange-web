@@ -1,8 +1,13 @@
 /** "What we make": one card per service category, split by a vertical dotted separator. */
 import { SERVICES } from '../content.js';
 import { $, formatPrice } from '../lib/dom.js';
-import { crateMark } from '../lib/icons.js';
 import { priceAttr } from './pricing.js';
+
+/** Stills of real work, tucked into the card's colour band like prints in a crate. */
+const stills = (service) => `
+  <div class="service-card__stills service-card__stills--${service.sampleKind}" aria-hidden="true">
+    ${service.stills.map((src) => `<img src="${src}" alt="" decoding="async">`).join('')}
+  </div>`;
 
 export function renderServices() {
   $('[data-render="services"]').innerHTML = SERVICES.map((service) => {
@@ -10,11 +15,8 @@ export function renderServices() {
     return `
       <a class="service-card service-card--${service.accent}" href="#pricing">
         <div class="service-card__top">
-          <div>
-            <p class="label">${service.number}</p>
-            <h3 class="service-card__title">${service.title}</h3>
-          </div>
-          ${crateMark('service-card__mark')}
+          <h3 class="service-card__title">${service.title}</h3>
+          ${stills(service)}
         </div>
         <div class="service-card__body">
           <p class="service-card__summary">${service.summary}</p>

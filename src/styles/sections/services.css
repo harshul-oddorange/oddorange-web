@@ -21,12 +21,73 @@
   transform: translateY(-6px);
 }
 .service-card__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
+  position: relative;
+  min-height: clamp(210px, 19vw, 270px);
   padding: clamp(22px, 2.6vw, 34px);
   border-bottom: 2px solid var(--ink);
+  overflow: hidden;
+}
+/* Real stills standing in the band, their lower part tucked below its edge; they lift and fan on hover. */
+.service-card__stills {
+  position: absolute;
+  right: clamp(18px, 2.4vw, 34px);
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.service-card__stills img {
+  display: block;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  object-fit: cover;
+  background: var(--ink);
+  box-shadow: 0 14px 30px -14px rgba(26, 23, 20, 0.6);
+  transform: translateY(var(--y)) rotate(var(--r));
+  transition: transform 0.7s var(--ease-out);
+}
+/* --w is one still's width; overlaps are fractions of it. */
+.service-card__stills img {
+  width: var(--w);
+}
+.service-card__stills img + img {
+  margin-left: calc(var(--w) * var(--overlap));
+}
+.service-card__stills--reel {
+  --w: clamp(64px, 6.4vw, 96px);
+  --overlap: -0.32;
+}
+.service-card__stills--reel img {
+  aspect-ratio: 9 / 16;
+  --y: 30%;
+}
+.service-card__stills--motion {
+  --w: clamp(120px, 12vw, 180px);
+  --overlap: -0.55;
+}
+.service-card__stills--motion img {
+  aspect-ratio: 16 / 9;
+  --y: 20%;
+}
+.service-card__stills--motion img:first-child {
+  margin-bottom: calc(var(--w) * 0.24);
+}
+.service-card__stills img:nth-child(1) {
+  --r: -8deg;
+}
+.service-card__stills img:nth-child(2) {
+  --r: 3deg;
+}
+.service-card__stills img:nth-child(3) {
+  --r: 9deg;
+}
+.service-card:hover .service-card__stills img {
+  --y: 8%;
+}
+.service-card:hover .service-card__stills img:nth-child(1) {
+  --r: -12deg;
+}
+.service-card:hover .service-card__stills img:nth-child(3) {
+  --r: 13deg;
 }
 .service-card--orange .service-card__top {
   background: var(--lemon);
@@ -35,14 +96,11 @@
   background: var(--leaf);
 }
 .service-card__title {
+  position: relative;
+  z-index: 1;
   font: 600 var(--fs-h2) / 1.05 var(--font-sans);
   letter-spacing: -0.03em;
-  max-width: 14ch;
-}
-.service-card__mark {
-  width: clamp(40px, 4vw, 56px);
-  color: var(--ink);
-  flex: none;
+  max-width: 12ch;
 }
 .service-card__body {
   display: flex;

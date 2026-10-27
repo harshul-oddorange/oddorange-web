@@ -24,6 +24,18 @@
 .video-slot:hover .video-slot__thumb {
   transform: scale(1.04);
 }
+.video-slot__preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out);
+}
+.video-slot__preview.is-playing {
+  opacity: 1;
+}
 .video-slot__play {
   --size: clamp(48px, 6vw, 96px);
   position: absolute;
@@ -186,11 +198,15 @@ html.has-player {
   overflow: hidden;
 }
 
-/* With a real thumbnail the play button sits in the corner, so the artwork stays readable. */
+/*
+ * With a real thumbnail the play button sits bottom right, where YouTube puts its duration badge:
+ * the channel thumbnails keep that corner clear, so the title artwork stays readable.
+ */
 .video-slot--image .video-slot__play {
   --size: clamp(44px, 4vw, 64px);
   --inset: clamp(12px, 1.4vw, 20px);
-  left: var(--inset);
+  left: auto;
+  right: var(--inset);
   top: auto;
   bottom: var(--inset);
   margin: 0;

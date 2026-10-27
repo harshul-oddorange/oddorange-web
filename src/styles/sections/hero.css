@@ -19,6 +19,19 @@
   position: relative;
   z-index: 1;
 }
+/*
+ * Until the hero reveal is set up (boot.js adds .js, scenes.js adds .hero-ready), its animated parts stay
+ * hidden, so they are never seen in place first and then animated in again. Failsafe: shown after 6 s regardless.
+ */
+html.js:not(.hero-ready) :is(.hero__meta, .hero__title, .hero__foot, .odd-badge, .dot-field) {
+  visibility: hidden;
+  animation: hero-failsafe 0s 6s forwards;
+}
+@keyframes hero-failsafe {
+  to {
+    visibility: visible;
+  }
+}
 .dot-field {
   position: absolute;
   z-index: 0;

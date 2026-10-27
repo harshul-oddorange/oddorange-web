@@ -16,14 +16,21 @@
 .price-col__head {
   align-self: end;
 }
+/* Title on its own row, then the note and the currency switch, so both column heads line up whatever the title length. */
 .price-col__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 14px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px 14px;
   padding-bottom: 14px;
   border-bottom: 2px solid var(--ink);
+}
+.price-col__head .price-col__title {
+  grid-column: 1 / -1;
+}
+.price-col__head .toggle {
+  grid-column: 2;
+  grid-row: 2;
 }
 .price-col__title {
   display: flex;
@@ -47,9 +54,10 @@
   background: var(--leaf);
 }
 .price-col__note {
+  grid-column: 1;
+  grid-row: 2;
   color: var(--ink-soft);
   font-size: var(--fs-small);
-  width: 100%;
 }
 
 .package {
