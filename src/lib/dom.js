@@ -15,8 +15,12 @@ export const COLORS = {
   ink: '#1A1714',
 };
 
-/** ₹5,000 / $50 style price labels. */
+/** ₹5,000 / $50 style price labels; a [low, high] pair reads ₹2,000–5,000 / $20–50. */
 export function formatPrice(amount, currency = 'inr') {
+  if (Array.isArray(amount)) {
+    const [low, high] = amount;
+    return formatPrice(low, currency) + '–' + high.toLocaleString(currency === 'usd' ? 'en-US' : 'en-IN');
+  }
   return currency === 'usd' ? '$' + amount.toLocaleString('en-US') : '₹' + amount.toLocaleString('en-IN');
 }
 

@@ -126,6 +126,7 @@ export const TESTIMONIALS = [];
  * how Premium differs from Standard. `sample` is the YouTube id and poster of a
  * short example of that package (leave `id` empty until you have one).
  * Every price needs both `inr` and `usd`: the ₹ / $ switch changes the whole pricing section.
+ * A price can be a [low, high] range; a package without `meters` hides the comparison dots.
  */
 export const SERVICES = [
   {
@@ -138,46 +139,28 @@ export const SERVICES = [
       'Reels, Shorts and social videos edited from your footage: pacing, captions, music, colour and motion.',
     uses: ['New arrivals', 'Product showcases', 'Fashion campaigns', 'Promos'],
     // Real work tucked into the "What we make" card, back to front.
-    stills: ['/img/work/identity.webp', '/img/work/launch-reel.webp', '/img/work/teeandtoe.webp'],
-    note: 'Starting prices for Reels up to 60 seconds, edited from footage you supply.',
+    stills: ['/img/work/identity.webp', '/img/work/launch-reel.webp'],
+    note: 'Priced per Reel by how much the edit needs, for Reels up to 60 seconds edited from footage you supply. You get the exact price before we start.',
     sampleKind: 'reel',
     meterLabels: ['Editing', 'Motion graphics', 'Creative treatment'],
     packages: [
       {
-        tier: 'Standard',
-        price: { inr: 1000, usd: 10 },
-        per: 'per Reel',
-        revisions: '1 revision round',
-        promise: 'Clean, good-looking edits for everyday posting.',
-        meters: [2, 1, 1],
-        includes: [
-          'Clean cuts and pacing',
-          'Music synchronisation',
-          'Basic transitions',
-          'Simple captions or text',
-          'Basic colour correction',
-          'One revision round',
-        ],
-        bestFor: 'Boutiques, clothing stores, product showcases, new arrivals and everyday social content.',
-        sample: { id: 'TZm7EaZqbeo', title: 'Tee & Toe · pastel shirts', poster: '/img/work/teeandtoe.webp' },
-      },
-      {
-        tier: 'Premium',
-        price: { inr: 2000, usd: 20 },
+        // One package priced as a range: where a Reel lands depends on how much the edit needs.
+        tier: 'Reel editing',
+        key: 'reel',
+        price: { inr: [2000, 5000], usd: [20, 50] },
         per: 'per Reel',
         revisions: '2 revision rounds',
-        promise: 'Creative, polished edits made to stop the scroll.',
-        meters: [3, 2, 3],
+        promise: 'From a clean, quick edit to a Reel built to stop the scroll.',
         includes: [
-          'More sophisticated editing and pacing',
-          'Beat synchronisation',
-          'More detailed colour grading where footage allows',
-          'Animated typography and simple motion graphics',
-          'Creative transitions and visual effects',
+          'Clean cuts, pacing and beat sync',
+          'Captions and animated typography',
+          'Colour correction, and grading where footage allows',
+          'Transitions, simple motion graphics and effects',
           'Sound design where appropriate',
           'Two revision rounds',
         ],
-        bestFor: 'Promotional Reels, fashion campaigns, brand content and product ads.',
+        bestFor: 'Boutiques, product showcases, new arrivals, fashion campaigns and brand ads.',
         sample: {
           id: 'v-0ec7srjPI',
           title: 'Odd Orange · now taking projects',
@@ -214,7 +197,7 @@ export const SERVICES = [
     packages: [
       {
         tier: 'Standard',
-        price: { inr: 5000, usd: 50 },
+        price: { inr: 20000, usd: 200 },
         per: 'per video',
         revisions: '1 revision round per stage',
         promise: 'Simple, focused motion graphics.',
@@ -232,7 +215,7 @@ export const SERVICES = [
       },
       {
         tier: 'Premium',
-        price: { inr: 10000, usd: 100 },
+        price: { inr: 40000, usd: 400 },
         per: 'per video',
         revisions: '2 revision rounds per stage',
         promise: 'Richer product storytelling and animation.',

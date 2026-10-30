@@ -11,7 +11,10 @@ const stills = (service) => `
 
 export function renderServices() {
   $('[data-render="services"]').innerHTML = SERVICES.map((service) => {
-    const { price } = service.packages[0];
+    // The lowest price in the column (the low end when it is a range).
+    const low = (amount) => [amount].flat()[0];
+    const { price: first } = service.packages[0];
+    const price = { inr: low(first.inr), usd: low(first.usd) };
     return `
       <a class="service-card service-card--${service.accent}" href="#pricing">
         <div class="service-card__top">

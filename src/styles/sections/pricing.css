@@ -1,20 +1,11 @@
-/* Pricing: two categories side by side, Standard and Premium stacked in each. */
-/* Subgrid keeps the header, Standard, Premium and payment rows aligned across both columns. */
+/* Pricing: one full-width row per category. A single package is one wide card; Standard and Premium sit side by side. */
 .pricing__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(5, auto);
-  column-gap: clamp(16px, 2vw, 32px);
-  row-gap: var(--gap);
+  row-gap: clamp(56px, 7vw, 104px);
 }
 .price-col {
   display: grid;
-  grid-row: span 5;
-  grid-template-rows: subgrid;
   gap: var(--gap);
-}
-.price-col__head {
-  align-self: end;
 }
 /* Title on its own row, then the note and the currency switch, so both column heads line up whatever the title length. */
 .price-col__head {
@@ -60,10 +51,31 @@
   font-size: var(--fs-small);
 }
 
+.price-col__packages {
+  display: grid;
+  gap: var(--gap);
+}
+.price-col__packages--pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+/* Side by side, the sample sits beside the price only; the list and button use the full card width. */
+.price-col__packages--pair .package {
+  grid-template-areas:
+    'main sample'
+    'details details'
+    'cta cta';
+}
+
+/* Card areas: price block, what's included and the button stack beside the sample. */
 .package {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(16px, 2vw, 28px);
+  grid-template-areas:
+    'main sample'
+    'details sample'
+    'cta sample';
+  grid-template-rows: auto 1fr auto;
+  gap: 18px clamp(16px, 2vw, 28px);
   padding: clamp(20px, 2.4vw, 32px);
   border: 2px solid var(--ink);
   border-radius: var(--radius);
@@ -75,11 +87,44 @@
 .package--premium.package--leaf {
   background: var(--leaf);
 }
-.package__main {
+.package__main,
+.package__details {
   display: flex;
   flex-direction: column;
   gap: 18px;
   min-width: 0;
+}
+.package__main {
+  grid-area: main;
+}
+.package__details {
+  grid-area: details;
+}
+.package__cta {
+  grid-area: cta;
+}
+.package__sample {
+  grid-area: sample;
+}
+
+/* The wide single card: price on the left, what's included in the middle, the Reel standing on the right. */
+.price-col__packages--single .package {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+  grid-template-areas:
+    'main details sample'
+    'cta details sample';
+  grid-template-rows: 1fr auto;
+  column-gap: clamp(24px, 3.4vw, 56px);
+}
+.price-col__packages--single .package__details {
+  padding-left: clamp(24px, 3.4vw, 56px);
+  border-left: 1.5px solid currentColor;
+}
+.price-col__packages--single .package__sample {
+  --sample-w: clamp(150px, 13vw, 200px);
+}
+.price-col__packages--single .package__cta {
+  justify-self: start;
 }
 .package__top {
   display: flex;
@@ -113,6 +158,10 @@
   font: 600 clamp(52px, 5.4vw, 88px) / 0.9 var(--font-sans);
   letter-spacing: -0.05em;
   font-variant-numeric: tabular-nums;
+}
+.package__amount--range {
+  font-size: clamp(44px, 4.6vw, 72px);
+  white-space: nowrap;
 }
 .package__per {
   font-weight: 600;
@@ -176,17 +225,30 @@
   --sample-w: 190px;
 }
 
+/* Payment and the custom-quote note run as one slim strip under each row. */
+.price-col__foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 3vw, 48px);
+}
 .payment {
-  padding: clamp(18px, 2vw, 26px);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 2vw, 28px);
+  padding: clamp(16px, 1.6vw, 22px) clamp(18px, 2vw, 26px);
   border-radius: var(--radius);
   background: var(--sand);
+}
+.payment__label {
+  max-width: 9ch;
 }
 .payment__steps {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 12px;
-  margin-top: 12px;
 }
 .payment__step {
   display: grid;
@@ -222,19 +284,38 @@
 }
 
 @media (max-width: 1100px) {
-  .pricing__grid {
+  .price-col__packages--pair {
     grid-template-columns: 1fr;
-    grid-template-rows: none;
-    row-gap: clamp(40px, 6vw, 64px);
   }
-  .price-col {
-    grid-row: auto;
-    grid-template-rows: none;
+  .price-col__packages--pair .package {
+    grid-template-areas:
+      'main sample'
+      'details sample'
+      'cta sample';
+  }
+  .price-col__packages--single .package {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'main sample'
+      'details sample'
+      'cta sample';
+    grid-template-rows: auto 1fr auto;
+  }
+  .price-col__packages--single .package__details {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .price-col__foot {
+    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 600px) {
-  .package {
+  .package,
+  .price-col__packages--single .package,
+  .price-col__packages--pair .package {
     grid-template-columns: 1fr;
+    grid-template-areas: 'main' 'details' 'cta' 'sample';
+    grid-template-rows: none;
   }
   .package__sample {
     width: 100%;
@@ -247,6 +328,12 @@
   }
   .package--motion .package__sample .video-slot {
     width: 150px;
+  }
+  .payment {
+    grid-template-columns: 1fr;
+  }
+  .payment__label {
+    max-width: none;
   }
   .payment__steps {
     grid-template-columns: 1fr;
