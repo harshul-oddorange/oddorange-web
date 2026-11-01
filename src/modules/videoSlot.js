@@ -12,7 +12,9 @@ import { pauseScroll } from './smoothScroll.js';
 const playIcon = `<svg viewBox="0 0 28 32" aria-hidden="true"><path d="${ICONS.play}" fill="${COLORS.ink}"/></svg>`;
 
 const embed = (video) =>
-  `<iframe src="https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="${video.title}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+  video.src
+    ? `<video class="video-slot__file" src="${video.src}" title="${video.title}" controls autoplay playsinline></video>`
+    : `<iframe src="https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="${video.title}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
 
 /**
  * @param {HTMLElement} el     container (.video-slot)
@@ -35,8 +37,8 @@ export function mountVideoSlot(el, video, kind = 'motion', { lightbox = false } 
     : `<div class="video-slot__poster">${crateMark()}<p class="label">${video.title}</p></div>`;
   el.innerHTML = `
     ${poster}
-    <button class="video-slot__play" aria-label="Play ${video.title} (loads YouTube)">${playIcon}</button>
-    <p class="video-slot__note">Plays from YouTube</p>`;
+    <button class="video-slot__play" aria-label="Play ${video.title}${video.src ? '' : ' (loads YouTube)'}">${playIcon}</button>
+    ${video.src ? '' : '<p class="video-slot__note">Plays from YouTube</p>'}`;
 
   const preview = video.preview && !prefersReducedMotion ? mountPreview(el, video.preview) : null;
 

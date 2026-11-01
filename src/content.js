@@ -28,7 +28,10 @@ export const SITE = {
  */
 export const VIDEOS = {
   showreel: {
-    id: 'W4pvKKLiTCU',
+    // Showreel 2026 (v12). Its YouTube upload is scheduled, so it is private until it goes live and
+    // plays from our own file for now. Once it is public: put its YouTube id here and delete `src`.
+    id: 'showreel-2026',
+    src: '/video/showreel.mp4',
     title: 'Odd Orange motion graphics showreel',
     poster: '/img/work/showreel.webp',
     // Silent loop that plays in the frame until the visitor presses play (self-hosted, not YouTube).
